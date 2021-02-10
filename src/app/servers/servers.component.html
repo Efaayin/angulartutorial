@@ -19,5 +19,18 @@
 
 <button class="btn btn-secondary" [disabled]="username === ''" (click)="onResetUsername()">Reset</button>
 
-<app-server></app-server>
-<app-server></app-server>
+<app-server *ngFor="let server of servers"></app-server>
+
+<hr>
+
+<!-- <button class="btn btn-primary" (click)="toggleBtn = !toggleBtn">Toggle Display</button> -->
+<button class="btn btn-primary" (click)="logDetails()">Toggle Display</button>
+
+<p *ngIf="toggleBtn">Secret Password</p>
+
+<div *ngFor="let logItem of log; let i = index" 
+[ngStyle]="{
+    backgroundColor: i >= 4 ? 'blue' : 'transparent'
+}" 
+[ngClass]="{'white-text': i >= 4}">{{ logItem }}</div>
+

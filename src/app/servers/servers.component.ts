@@ -3,21 +3,22 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-servers',
   templateUrl: './servers.component.html',
-  styleUrls: ['./servers.component.css']
+  styleUrls: ['./servers.component.css'],
 })
 
 export class ServersComponent implements OnInit {
   allowNewServer = false;
   serverCreationStatus = "No server was created";
   serverName = 'Testserver';
-  username: any = ''
+  username: any = '';
   serverCreated = false;
+  servers = ['TestServer', 'TestServer 2'];
 
+  toggleBtn = false;
+  log = [];
+
+ 
   constructor() { 
-    setTimeout(() => {
-      this.allowNewServer = true;
-    }, 2000)
-
     setTimeout(() => {
       this.allowNewServer = true;
     }, 2000)
@@ -28,7 +29,7 @@ export class ServersComponent implements OnInit {
 
   onCreateServer() {
     this.serverCreated = true;
-    this.serverCreationStatus = `Server was created! Name is ${this.serverName}`;
+    this.servers.push(this.serverName);
   }
 
   onUpdateServerName(event: Event) {
@@ -37,5 +38,11 @@ export class ServersComponent implements OnInit {
 
   onResetUsername() {
     this.username = '';
+  }
+
+  logDetails() {
+    this.toggleBtn = !this.toggleBtn;
+    // this.log.push(this.log.length + 1);
+    this.log.push(new Date());
   }
 }
